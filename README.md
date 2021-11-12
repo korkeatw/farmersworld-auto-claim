@@ -20,7 +20,7 @@ The program loop through your items, when your crafted items are ready to claim,
 
 - Goto https://farmersworld.io
 - Login to the game, select RPC server and your wallet manually
-- Goto the page your show your crafted items
+- Goto the page that show your crafted items
 - Press F12 or right click > Inspect to open Developer Tools
 - Find and click "Console" tab
 - Copy and paste the code to console prompt (> sign) then enter

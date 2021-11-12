@@ -32,7 +32,7 @@ async function claim(itemName) {
     await delay(POPUP_APPEAR_TIMER)
     
     closeModal(`You already mined ${itemName}`)
-  } else if (claimBtn && claimBtn.innerText.toLowerCase() === 'claimed') {
+  } else if (claimBtn && claimBtn.innerText.toLowerCase() === 'claim') {
     claimBtn.click();
     console.log(`!! Claimed ${itemName} at ${currentDatetime()}`)
     

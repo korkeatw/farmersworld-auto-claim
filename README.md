@@ -4,7 +4,7 @@ Claim your Farmers World NFT Game (https://farmersworld.io) items automatically.
 The program is 100% safe. You can see ALL plain code, nothing obfuscated or encoded.
 
 สคริปต์สำหรับเคลมไอเทมที่ craft ไว้ในเกม Farmers World NFT Game อัตโนมัติ รองรับการเคลมหลายไอเทม
-โปรแกรมปลอดภัย 100% โค้ดทั้งหมดไม่ถูกซ่อนหรือเข้ารหัสไว้
+โปรแกรมปลอดภัย 100% โค้ดทั้งหมดไม่ถูกซ่อนหรือเข้ารหัสไว้ ทำงานบนเบราว์เซอร์ในเครื่องคุณเท่านั้น
 
 
 ## How it work

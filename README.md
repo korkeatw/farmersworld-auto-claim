@@ -1,12 +1,10 @@
 # farmersworld-auto-claim
 
-Claim your Farmers World NFT Game (https://farmersworld.io) items automatically
-
-สคริปต์สำหรับเคลมไอเทมที่ craft ไว้ในเกม Farmers World NFT Game อัตโนมัติ รองรับการเคลมหลายไอเทม
-
+Claim your Farmers World NFT Game (https://farmersworld.io) items automatically.
 The program is 100% safe. You can see ALL plain code, nothing obfuscated or encoded.
 
 โปรแกรมปลอดภัย 100% โค้ดทั้งหมดไม่ถูกปกปิดหรือเข้ารหัสไว้
+สคริปต์สำหรับเคลมไอเทมที่ craft ไว้ในเกม Farmers World NFT Game อัตโนมัติ รองรับการเคลมหลายไอเทม
 
 
 ## How it work
@@ -21,7 +19,9 @@ The program loop through your items, when your crafted items are ready to claim,
 - Goto https://farmersworld.io
 - Login to the game, select RPC server and your wallet manually
 - Goto the page that show your crafted items
-- Press F12 or right click > Inspect to open Developer Tools
+- Press F12 or Right Click > Inspect to open Developer Tools
+  - Windows press ctrl + shift + j
+  - Mac press cmd + option + i
 - Find and click "Console" tab
 - Copy and paste the code to console prompt (> sign) then enter
 - When your items are ready to claim, the program will claim items for you automatically
@@ -31,9 +31,11 @@ The program loop through your items, when your crafted items are ready to claim,
 - เข้าเว็บไซต์ https://farmersworld.io
 - ล็อกอินเข้าสู่เกม เลือก RPC server, ไปที่หน้า items ที่ craft ไว้
 - กด F12 หรือ คลิกขวา > Inspect เพื่อเปิด Developer Tools
+  - Windows กด ctrl + shift + j
+  - Mac กด cmd + option + i
 - กดที่ tab "Console"
-- Copy โค้ดและวางที่ console prompt (เครื่องหมาย >) แล้วกด enter
-- เมื่อ item พร้อมให้กด claim โปรแกรมจะกดเคลมให้อัตโนมัติ
+- ก๊อปปี้โค้ดและวางที่ console prompt (เครื่องหมาย >) แล้วกด enter
+- เมื่อไอเทมพร้อมให้กด claim โปรแกรมจะกดเคลมให้อัตโนมัติ
 
 
 ## Donation
@@ -41,6 +43,16 @@ The program loop through your items, when your crafted items are ready to claim,
 If you like the program and it's useful for you, you can donate coins to these addresses
 
 ถ้าคุณชอบโปรแกรมและคิดว่าโปรแกรมมีประโยชน์สามารถบริจาคคอยน์ได้ที่ address เหล่านี้
+
+**USDT**
+```
+3A1pUJudEZ4tSSBECvwRdoVkpBUGZhHfdK
+```
+
+**USDC**
+```
+0x967a47d92d0876bb1a8532586d2afd35f5ca6302
+```
 
 **BTC**
 ```

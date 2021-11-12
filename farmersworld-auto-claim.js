@@ -1,6 +1,6 @@
-const DELAY_EACH_ITEM_SEC = 3 * 1000
+const DELAY_EACH_ITEM_SEC = 10 * 1000
 const DELAY_AFTER_READ_ALL_ITEMS_SEC = 30 * 1000
-const DELAY_AFTER_CLICKED_ITEM_SEC = 0.5 * 100
+const DELAY_AFTER_CLICKED_ITEM_SEC = 1 * 1000
  
  
 async function delay(ms=1000) {
@@ -32,16 +32,20 @@ async function claim(itemName) {
 
 
 while(true) {
-  const items=document.querySelector("section.vertical-carousel-container").children
+  const itemsElm=document.querySelector("section.vertical-carousel-container")
 
-  for (item of items) {
-    item.click()
-    await delay(DELAY_AFTER_CLICKED_ITEM_SEC)
+  if (itemsElm) {
+    const items=itemsElm.children
     
-    const itemName = document.querySelector("div.info-title-name").innerText
-    
-    await claim(itemName)
-    await delay(DELAY_EACH_ITEM_SEC)
+    for (item of items) {
+      item.click()
+      await delay(DELAY_AFTER_CLICKED_ITEM_SEC)
+      
+      const itemName = document.querySelector("div.info-title-name").innerText
+      
+      await claim(itemName)
+      await delay(DELAY_EACH_ITEM_SEC)
+    }
   }
 
   await delay(DELAY_AFTER_READ_ALL_ITEMS_SEC)

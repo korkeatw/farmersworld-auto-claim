@@ -16,7 +16,7 @@ async function claim(itemName) {
   const claimBtn=document.getElementsByClassName('button-section set-height')[0]
 
   if (claimBtn && claimBtn.innerText === 'Mine') {
-    claimButtom.click();
+    claimBtn.click();
     console.log(`Claimed ${itemName} at ${currentDatetime()}`)
     
     await delay(1000)

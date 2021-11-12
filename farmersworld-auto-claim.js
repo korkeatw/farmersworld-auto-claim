@@ -19,7 +19,7 @@ async function claim(itemName) {
     claimBtn.click();
     console.log(`Claimed ${itemName} at ${currentDatetime()}`)
     
-    await delay(1000)
+    await delay(DELAY_AFTER_CLICKED_ITEM_SEC)
     
     const modalConfirmBtn=document.getElementsByClassName('plain-button short undefined')[0]
   

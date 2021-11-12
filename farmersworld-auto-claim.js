@@ -16,7 +16,7 @@ function currentDatetime() {
 function closeModal(text) {
   const modalConfirmBtn=document.getElementsByClassName('plain-button short undefined')[0]
   
-  if (modalConfirmBtn && modalConfirmBtn.innerText.toLowerCase() === 'ok') {
+  if (modalConfirmBtn && modalConfirmBtn.innerText === 'OK') {
     console.log(text);
     modalConfirmBtn.click();
   }
@@ -25,14 +25,14 @@ function closeModal(text) {
 async function claim(itemName) {
   const claimBtn=document.getElementsByClassName('button-section set-height')[0]
 
-  if (claimBtn && claimBtn.innerText.toLowerCase() === 'mine') {
+  if (claimBtn && claimBtn.innerText === 'Mine') {
     claimBtn.click();
     console.log(`Mined ${itemName} at ${currentDatetime()}`)
     
     await delay(POPUP_APPEAR_TIMER)
     
     closeModal(`You already mined ${itemName}`)
-  } else if (claimBtn && claimBtn.innerText.toLowerCase() === 'claim') {
+  } else if (claimBtn && claimBtn.innerText === 'Claim') {
     claimBtn.click();
     console.log(`!! Claimed ${itemName} at ${currentDatetime()}`)
     

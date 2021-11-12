@@ -20,7 +20,7 @@ The program loop through your items, when your crafted items are ready to claim,
 
 - Goto https://farmersworld.io
 - Login to the game, select RPC server and your wallet manually
-- Goto the page your show your crafted items (Smithy)
+- Goto the page your show your crafted items
 - Press F12 or right click > Inspect to open Developer Tools
 - Find and click "Console" tab
 - Copy and paste the code to console prompt (> sign) then enter
@@ -29,7 +29,7 @@ The program loop through your items, when your crafted items are ready to claim,
 *Thai version*
 
 - เข้าเว็บไซต์ https://farmersworld.io
-- ล็อกอินเข้าสู่เกม เลือก RPC server, ไปที่หน้า items ที่ craft ไว้ (Smithy)
+- ล็อกอินเข้าสู่เกม เลือก RPC server, ไปที่หน้า items ที่ craft ไว้
 - กด F12 หรือ คลิกขวา > Inspect เพื่อเปิด Developer Tools
 - กดที่ tab "Console"
 - Copy โค้ดและวางที่ console prompt (เครื่องหมาย >) แล้วกด enter

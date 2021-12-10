@@ -47,7 +47,7 @@ function percentage(a, b) {
   return parseFloat(((a/b)*100).toFixed(2))
 }
 
-function rechargeEnergy() {
+async function rechargeEnergy() {
   const resources = document.querySelectorAll(".resource__group")
 
   if (resources.length) {
@@ -61,6 +61,8 @@ function rechargeEnergy() {
 
       // click + to add energy
       document.querySelector('.resource-energy--plus').click()
+      await delay(2000)
+
 
       // increase energy number to be filled, find and click exchange button
       do {
@@ -84,7 +86,7 @@ while(true) {
     const items=itemsElm.children
     
     for (item of items) {
-      rechargeEnergy()
+      await rechargeEnergy()
 
       item.click()
       await delay(DELAY_AFTER_CLICKED_ITEM)

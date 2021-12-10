@@ -3,6 +3,7 @@ const DELAY_AFTER_READ_ALL_ITEMS = 30 * 1000
 const DELAY_AFTER_CLICKED_ITEM = 1 * 1000
 const POPUP_APPEAR_TIMER = 1 * 1000
 const ENERGY_THRESHOLD_PERCENT = 60
+const ITEM_DURABILITY_THRESHOLD_PERCENT = 50
 
  
 async function delay(ms=1000) {
@@ -14,10 +15,14 @@ function currentDatetime() {
   return d.toISOString()
 }
 
+function percentage(a, b) {
+  return parseFloat(((a/b)*100).toFixed(2))
+}
+
 function closeModal(text) {
   const modalConfirmBtn=document.getElementsByClassName('plain-button short undefined')[0]
   
-  if (modalConfirmBtn && modalConfirmBtn.innerText === 'OK') {
+  if (modalConfirmBtn && modalConfirmBtn.innerText.toUpperCase() === 'OK') {
     console.log(text);
     modalConfirmBtn.click();
   }
@@ -43,8 +48,18 @@ async function claim(itemName) {
   }
 }
 
-function percentage(a, b) {
-  return parseFloat(((a/b)*100).toFixed(2))
+async function repair(itemName) {
+  const activeButtons = document.getElementsByClassName('button-section set-height')
+  const repairButtonIsActive = activeButtons.length === 2 && activeButtons[1].innerText === 'Repair'
+  const itemDurableNumbers = document.querySelector('.card-number').innerText.split('/ ')
+  const itemDurabilityPercent = percentage(itemDurableNumbers[0], itemDurableNumbers[1])
+  const shouldRepair = itemDurabilityPercent < ITEM_DURABILITY_THRESHOLD_PERCENT
+
+  if (repairButtonIsActive && shouldRepair) {
+    activeButtons[1].click()
+
+    console.log(`Item "${itemName}" was repaired!`)
+  }
 }
 
 async function rechargeEnergy() {
@@ -93,6 +108,7 @@ while(true) {
       
       const itemName = document.querySelector("div.info-title-name").innerText
       
+      await repair(itemName)
       await claim(itemName)
       await delay(DELAY_EACH_ITEM)
     }

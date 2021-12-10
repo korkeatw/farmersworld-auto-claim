@@ -20,7 +20,7 @@ function percentage(a, b) {
 }
 
 function closeModal(text) {
-  const modalConfirmBtn=document.getElementsByClassName('plain-button short undefined')[0]
+  const modalConfirmBtn = document.getElementsByClassName('plain-button short undefined')[0]
   
   if (modalConfirmBtn && modalConfirmBtn.innerText.toUpperCase() === 'OK') {
     console.log(text);
@@ -28,18 +28,24 @@ function closeModal(text) {
   }
 }
 
-async function claim(itemName) {
-  const claimBtn=document.getElementsByClassName('button-section set-height')[0]
+async function mine(itemName) {
+  const btn = document.getElementsByClassName('button-section set-height')[0]
 
-  if (claimBtn && claimBtn.innerText === 'Mine') {
-    claimBtn.click();
+  if (btn && btn.innerText === 'Mine') {
+    btn.click();
     console.log(`Mined ${itemName} at ${currentDatetime()}`)
     
     await delay(POPUP_APPEAR_TIMER)
     
     closeModal(`You already mined ${itemName}`)
-  } else if (claimBtn && claimBtn.innerText === 'Claim') {
-    claimBtn.click();
+  }
+}
+
+async function claim(itemName) {
+  const btn = document.getElementsByClassName('button-section set-height')[0]
+
+  if (btn && btn.innerText === 'Claim') {
+    btn.click();
     console.log(`!! Claimed ${itemName} at ${currentDatetime()}`)
     
     await delay(POPUP_APPEAR_TIMER)
@@ -51,14 +57,17 @@ async function claim(itemName) {
 async function repair(itemName) {
   const activeButtons = document.getElementsByClassName('button-section set-height')
   const repairButtonIsActive = activeButtons.length === 2 && activeButtons[1].innerText === 'Repair'
-  const itemDurableNumbers = document.querySelector('.card-number').innerText.split('/ ')
-  const itemDurabilityPercent = percentage(itemDurableNumbers[0], itemDurableNumbers[1])
-  const shouldRepair = itemDurabilityPercent < ITEM_DURABILITY_THRESHOLD_PERCENT
 
-  if (repairButtonIsActive && shouldRepair) {
-    activeButtons[1].click()
+  if (repairButtonIsActive) {
+    const itemDurabilityNumbers = document.querySelector('.card-number').innerText.split('/ ')
+    const itemDurabilityPercent = percentage(itemDurabilityNumbers[0], itemDurabilityNumbers[1])
+    const shouldRepair = itemDurabilityPercent < ITEM_DURABILITY_THRESHOLD_PERCENT
 
-    console.log(`Item "${itemName}" was repaired!`)
+    if (shouldRepair) {
+      activeButtons[1].click()
+
+      console.log(`Item "${itemName}" was repaired at ${currentDatetime()}`)
+    }
   }
 }
 
@@ -109,6 +118,7 @@ while(true) {
       const itemName = document.querySelector("div.info-title-name").innerText
       
       await repair(itemName)
+      await mine(itemName)
       await claim(itemName)
       await delay(DELAY_EACH_ITEM)
     }

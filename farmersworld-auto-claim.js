@@ -66,6 +66,8 @@ async function repair(itemName) {
     if (shouldRepair) {
       activeButtons[1].click()
 
+      await delay(POPUP_APPEAR_TIMER)
+
       console.log(`Item "${itemName}" was repaired at ${currentDatetime()}`)
     }
   }

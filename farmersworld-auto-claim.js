@@ -1,17 +1,19 @@
+const DEFAULT_DELAY = 2 * 1000
+
 const DELAY_EACH_ITEM = 20 * 1000
 const DELAY_AFTER_READ_ALL_ITEMS = 30 * 1000
 const DELAY_AFTER_CLICKED_ITEM = 1 * 1000
-const POPUP_APPEAR_TIMER = 1 * 1000
+const POPUP_APPEAR_TIMER = 2 * 1000
 const ENERGY_THRESHOLD_PERCENT = 60
 const ITEM_DURABILITY_THRESHOLD_PERCENT = 50
 
  
-async function delay(ms=1000) {
+async function delay(ms = 1000) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 function currentDatetime() {
-  d=new Date()
+  d = new Date()
   return d.toISOString()
 }
 
@@ -87,7 +89,7 @@ async function rechargeEnergy() {
 
       // click + to add energy
       document.querySelector('.resource-energy--plus').click()
-      await delay(2000)
+      await delay(DEFAULT_DELAY)
 
 
       // increase energy number to be filled, find and click exchange button
@@ -120,7 +122,11 @@ while(true) {
       const itemName = document.querySelector("div.info-title-name").innerText
       
       await repair(itemName)
+      await delay(DEFAULT_DELAY)
+      
       await mine(itemName)
+      await delay(DEFAULT_DELAY)
+      
       await claim(itemName)
       await delay(DELAY_EACH_ITEM)
     }

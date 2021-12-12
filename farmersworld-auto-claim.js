@@ -102,7 +102,7 @@ async function rechargeEnergy() {
       while (true) {
         const energyValue = document.querySelector(".modal-input").value
         
-        if (energyValue && parseInt(energyValue) < energyToBeFilled) {
+        if (energyValue && parseInt(energyValue) > 0 && parseInt(energyValue) < energyToBeFilled) {
             document.querySelector("img[alt='Plus Icon']").click()
         } else {
           console.log(`Energy value is invalid or be maximal value (${energyValue}). Stop increasing the value.`)

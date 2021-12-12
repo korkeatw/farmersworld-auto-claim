@@ -96,14 +96,27 @@ async function rechargeEnergy() {
       await delay(DEFAULT_DELAY)
 
 
-      // increase energy number to be filled, find and click exchange button
-      do {
-        var energyValue = document.querySelector(".modal-input").value
-        document.querySelector("img[alt='Plus Icon']").click()
-      } while (energyValue != document.querySelector(".modal-input").value)
+      // input energy number to be filled
+      const energyToBeFilled = energyNumbers[1] - energyNumbers[0]
 
+      while (true) {
+        const energyValue = document.querySelector(".modal-input").value
+        
+        if (energyValue && parseInt(energyValue) < energyToBeFilled) {
+            document.querySelector("img[alt='Plus Icon']").click()
+        } else {
+          console.log(`Energy value is invalid or be maximal value (${energyValue}). Stop increasing the value.`)
+          break
+        }
+      }
+
+      console.log(`energy to be filled is = ${document.querySelector(".modal-input").value}`)
+
+      // click "Exchange" button to submit
       Array.from(document.querySelectorAll("div.plain-button"))
         .find(elm => elm.textContent == 'Exchange').click()
+
+      await delay(5000)
     } else {
       console.log('Energy is equal or greater than threshold. Do nothing!')
     }

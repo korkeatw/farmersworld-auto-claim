@@ -1,40 +1,53 @@
+const DEFAULT_DELAY = 2 * 1000
+
 const DELAY_EACH_ITEM = 20 * 1000
 const DELAY_AFTER_READ_ALL_ITEMS = 30 * 1000
 const DELAY_AFTER_CLICKED_ITEM = 1 * 1000
-const POPUP_APPEAR_TIMER = 1 * 1000
+const POPUP_APPEAR_TIMER = 2 * 1000
 const ENERGY_THRESHOLD_PERCENT = 60
+const ITEM_DURABILITY_THRESHOLD_PERCENT = 50
 
  
-async function delay(ms=1000) {
+async function delay(ms = 1000) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 function currentDatetime() {
-  d=new Date()
+  d = new Date()
   return d.toISOString()
 }
 
+function percentage(a, b) {
+  return parseFloat(((a/b)*100).toFixed(2))
+}
+
 function closeModal(text) {
-  const modalConfirmBtn=document.getElementsByClassName('plain-button short undefined')[0]
+  const modalConfirmBtn = document.getElementsByClassName('plain-button short undefined')[0]
   
-  if (modalConfirmBtn && modalConfirmBtn.innerText === 'OK') {
+  if (modalConfirmBtn && modalConfirmBtn.innerText.toUpperCase() === 'OK') {
     console.log(text);
     modalConfirmBtn.click();
   }
 }
 
-async function claim(itemName) {
-  const claimBtn=document.getElementsByClassName('button-section set-height')[0]
+async function mine(itemName) {
+  const btn = document.getElementsByClassName('button-section set-height')[0]
 
-  if (claimBtn && claimBtn.innerText === 'Mine') {
-    claimBtn.click();
+  if (btn && btn.innerText === 'Mine') {
+    btn.click();
     console.log(`Mined ${itemName} at ${currentDatetime()}`)
     
     await delay(POPUP_APPEAR_TIMER)
     
     closeModal(`You already mined ${itemName}`)
-  } else if (claimBtn && claimBtn.innerText === 'Claim') {
-    claimBtn.click();
+  }
+}
+
+async function claim(itemName) {
+  const btn = document.getElementsByClassName('button-section set-height')[0]
+
+  if (btn && btn.innerText === 'Claim') {
+    btn.click();
     console.log(`!! Claimed ${itemName} at ${currentDatetime()}`)
     
     await delay(POPUP_APPEAR_TIMER)
@@ -43,8 +56,23 @@ async function claim(itemName) {
   }
 }
 
-function percentage(a, b) {
-  return parseFloat(((a/b)*100).toFixed(2))
+async function repair(itemName) {
+  const activeButtons = document.getElementsByClassName('button-section set-height')
+  const repairButtonIsActive = activeButtons.length === 2 && activeButtons[1].innerText === 'Repair'
+
+  if (repairButtonIsActive) {
+    const itemDurabilityNumbers = document.querySelector('.card-number').innerText.split('/ ')
+    const itemDurabilityPercent = percentage(itemDurabilityNumbers[0], itemDurabilityNumbers[1])
+    const shouldRepair = itemDurabilityPercent < ITEM_DURABILITY_THRESHOLD_PERCENT
+
+    if (shouldRepair) {
+      activeButtons[1].click()
+
+      await delay(POPUP_APPEAR_TIMER)
+
+      console.log(`Item "${itemName}" was repaired at ${currentDatetime()}`)
+    }
+  }
 }
 
 async function rechargeEnergy() {
@@ -61,7 +89,7 @@ async function rechargeEnergy() {
 
       // click + to add energy
       document.querySelector('.resource-energy--plus').click()
-      await delay(2000)
+      await delay(DEFAULT_DELAY)
 
 
       // increase energy number to be filled, find and click exchange button
@@ -92,6 +120,12 @@ while(true) {
       await delay(DELAY_AFTER_CLICKED_ITEM)
       
       const itemName = document.querySelector("div.info-title-name").innerText
+      
+      await repair(itemName)
+      await delay(DEFAULT_DELAY)
+      
+      await mine(itemName)
+      await delay(DEFAULT_DELAY)
       
       await claim(itemName)
       await delay(DELAY_EACH_ITEM)

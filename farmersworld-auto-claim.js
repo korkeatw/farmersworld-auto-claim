@@ -27,6 +27,10 @@ function closeModal(text) {
   if (modalConfirmBtn && modalConfirmBtn.innerText.toUpperCase() === 'OK') {
     console.log(text);
     modalConfirmBtn.click();
+  } else {
+    // work around in case of the program cannot find OK button
+    // just click any elemen outside modal to close
+    document.getElementById('root').click()
   }
 }
 
